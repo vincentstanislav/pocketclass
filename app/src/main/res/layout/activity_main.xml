@@ -10,7 +10,8 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="0"
+        android:textSize="20pt"
         android:layout_centerHorizontal="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -95,7 +96,7 @@
             android:layout_width="0dp">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_sample"
+                android:id="@+id/card1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/primary"
@@ -103,7 +104,7 @@
                 android:layout_below="@+id/slider">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_below="@+id/card_sample">
@@ -126,7 +127,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Fingerprint"
+                            android:text="Add"
                             android:textAppearance="?attr/textAppearanceHeadline6"
                             />
                         <TextView
@@ -152,7 +153,7 @@
             android:layout_height="fill_parent"
             android:layout_width="0dp">
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_sample"
+                android:id="@+id/card2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/primary"
@@ -160,7 +161,7 @@
                 android:layout_below="@+id/slider">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_below="@+id/card_sample">
@@ -183,7 +184,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Fingerprint"
+                            android:text="Reset"
                             android:textAppearance="?attr/textAppearanceHeadline6"
                             />
                         <TextView
