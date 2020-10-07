@@ -4,88 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="20pt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20pt"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/confirm"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:text="Confirm"/>
+        android:id="@+id/appbar_layout">
 
-    <com.google.android.material.slider.Slider
-        android:id="@+id/slider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/confirm"
-        />
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/page_title"
+                app:menu="@menu/top_app_bar"
+                app:navigationIcon="@drawable/ic_baseline_menu_24"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:id="@+id/line1"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:layout_below="@+id/slider">
+        android:layout_below="@+id/appbar_layout">
 
         <LinearLayout
             android:layout_weight="1"
             android:layout_height="fill_parent"
+            android:layout_margin="10dp"
             android:layout_width="0dp">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card1"
+                android:id="@+id/matematika"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/primary"
+                app:cardCornerRadius="20dp"
                 android:layout_margin="8dp"
-                android:layout_below="@+id/slider">
+                android:elevation="2dp"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:padding="20dp"
+                    android:background="@drawable/gradient_background"
                     android:layout_below="@+id/card_sample">
 
                     <!-- Media -->
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        app:srcCompat="@drawable/ic_baseline_fingerprint_24"
-                        android:contentDescription="fingerprint"
-                        />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/maths"
+                        app:civ_border_width="3dp"
+                        android:layout_gravity="center_horizontal"
+                        app:civ_border_color="#FF000000"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:padding="16dp">
+                        android:padding="5dp">
 
                         <!-- Title, secondary and supporting text -->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Add"
-                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:layout_gravity = "center"
+                            android:text="Matematika"
+                            android:textSize="13dp"
+                            android:textColor="@color/primary_text"
                             />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="sample text"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="?android:attr/textColorSecondary"
-                            />
-
-
                     </LinearLayout>
 
                     <!-- Buttons -->
@@ -97,52 +100,58 @@
         <LinearLayout
             android:layout_weight="1"
             android:layout_height="fill_parent"
+            android:layout_margin="10dp"
             android:layout_width="0dp">
+
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card2"
+                android:id="@+id/ceskz_jazyk"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:backgroundTint="@color/primary"
+                app:cardCornerRadius="20dp"
                 android:layout_margin="8dp"
-                android:layout_below="@+id/slider">
+                app:cardBackgroundColor="@android:color/white"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true"
+
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:padding="20dp"
+                    android:background="@drawable/gradient_background"
                     android:layout_below="@+id/card_sample">
 
                     <!-- Media -->
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        app:srcCompat="@drawable/ic_baseline_fingerprint_24"
-                        android:contentDescription="fingerprint"
-                        />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/language"
+                        app:civ_border_width="3dp"
+                        android:layout_gravity="center_horizontal"
+                        app:civ_border_color="#FF000000"/>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:padding="16dp">
+                        android:padding="5dp">
 
                         <!-- Title, secondary and supporting text -->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Reset"
-                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:layout_gravity = "center"
+                            android:text="Český Jazyk"
+                            android:textSize="13dp"
+                            android:textColor="@color/primary_text"
                             />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="sample text"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="?android:attr/textColorSecondary"
-                            />
-
-
                     </LinearLayout>
 
                     <!-- Buttons -->
@@ -155,8 +164,8 @@
 
 
     <LinearLayout
-        android:id="@+id/line2"
         android:orientation="horizontal"
+        android:id="@+id/line2"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:layout_below="@+id/line1">
@@ -164,53 +173,56 @@
         <LinearLayout
             android:layout_weight="1"
             android:layout_height="fill_parent"
+            android:layout_margin="10dp"
             android:layout_width="0dp">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card1"
+                android:id="@+id/matematika"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:backgroundTint="@color/primary"
+                app:cardCornerRadius="20dp"
                 android:layout_margin="8dp"
-                android:layout_below="@+id/slider">
+                app:cardBackgroundColor="@android:color/white"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:padding="20dp"
+                    android:background="@drawable/gradient_background"
                     android:layout_below="@+id/card_sample">
 
                     <!-- Media -->
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        app:srcCompat="@drawable/ic_baseline_fingerprint_24"
-                        android:contentDescription="fingerprint"
-                        />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/quiz"
+                        app:civ_border_width="3dp"
+                        android:layout_gravity="center_horizontal"
+                        app:civ_border_color="#FF000000"/>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:padding="16dp">
+                        android:padding="5dp">
 
                         <!-- Title, secondary and supporting text -->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Add"
-                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:layout_gravity = "center"
+                            android:text="Quiz"
+                            android:textSize="13dp"
+                            android:textColor="@color/primary_text"
                             />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="sample text"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="?android:attr/textColorSecondary"
-                            />
-
-
                     </LinearLayout>
 
                     <!-- Buttons -->
@@ -222,95 +234,10 @@
         <LinearLayout
             android:layout_weight="1"
             android:layout_height="fill_parent"
+            android:layout_margin="10dp"
             android:layout_width="0dp">
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/primary"
-                android:layout_margin="8dp"
-                android:layout_below="@+id/slider">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_below="@+id/card_sample">
-
-                    <!-- Media -->
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        app:srcCompat="@drawable/ic_baseline_fingerprint_24"
-                        android:contentDescription="fingerprint"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
-                        <!-- Title, secondary and supporting text -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Reset"
-                            android:textAppearance="?attr/textAppearanceHeadline6"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="sample text"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="?android:attr/textColorSecondary"
-                            />
-
-
-                    </LinearLayout>
-
-                    <!-- Buttons -->
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </LinearLayout>
-
-
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:liftOnScroll="true">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="@string/page_title"
-            app:menu="@menu/top_app_bar"
-            app:navigationIcon="@drawable/ic_baseline_menu_24"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <!-- Note: A RecyclerView can also be used -->
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <!-- Scrollable content -->
-
-    </androidx.core.widget.NestedScrollView>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </RelativeLayout>

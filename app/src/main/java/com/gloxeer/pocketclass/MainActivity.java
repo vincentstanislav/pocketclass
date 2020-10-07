@@ -13,46 +13,22 @@ import androidx.appcompat.widget.ButtonBarLayout;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+//public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity {
 
-    //declare variables
+        //declare variables
     private Button button;
     private TextView textView;
+    private CardView cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = findViewById(R.id.confirm);
-        button.setOnClickListener(this);
+         }
 
-        textView = (TextView) findViewById(R.id.textView);
-        textView.setOnClickListener(this);
-
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.settings:
-
-                return true;
-
-            case R.id.favorite:
-
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
-                return true;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
-        }
-    }
-
-   // @Override
+  /* // @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.confirm:
@@ -64,6 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 textView = (TextView) findViewById(R.id.textView);
                 textView.setText("Clicked!");
                 break;
+            case R.id.card_sample:
+                cardView = (CardView) findViewById(R.id.card_sample);
+                textView.setText("Not Clicked!");
+                break;
         }
-    }
+    }*/
 }
