@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,7 +20,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:liftOnScroll="true">
+            app:liftOnScroll="false">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
@@ -45,7 +50,7 @@
             android:layout_width="0dp">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/matematika"
+                android:id="@+id/math"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/primary"
@@ -66,7 +71,7 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/profile_image"
+                        android:id="@+id/img_math"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/maths"
@@ -104,7 +109,7 @@
             android:layout_width="0dp">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/ceskz_jazyk"
+                android:id="@+id/czech"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/primary"
@@ -128,7 +133,7 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/profile_image"
+                        android:id="@+id/img_czech"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/language"
@@ -177,7 +182,7 @@
             android:layout_width="0dp">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/matematika"
+                android:id="@+id/quiz"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/primary"
@@ -199,7 +204,7 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/profile_image"
+                        android:id="@+id/img_quiz"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/quiz"
@@ -241,3 +246,4 @@
     </LinearLayout>
 
 </RelativeLayout>
+</ScrollView>
