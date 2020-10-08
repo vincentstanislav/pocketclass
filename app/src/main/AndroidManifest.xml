@@ -4,6 +4,8 @@
     package="com.gloxeer.pocketclass">
 
     <application
+        android:versionCode="1"
+        android:versionName="1.0"
         android:allowBackup="true"
         android:icon="@drawable/ic_baseline_fingerprint_24"
         android:label="@string/app_name"

@@ -50,7 +50,7 @@
                 android:layout_width="0dp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/math"
+                    android:id="@+id/multiplication"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/primary"
@@ -109,7 +109,7 @@
                 android:layout_width="0dp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/math"
+                    android:id="@+id/plus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/primary"
@@ -177,7 +177,7 @@
                 android:layout_width="0dp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/math"
+                    android:id="@+id/minus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/primary"
