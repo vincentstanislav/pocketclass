@@ -10,8 +10,8 @@
         android:roundIcon="@drawable/ic_baseline_fingerprint_24"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:versionCode="3"
-        android:versionName="3.0">
+        android:versionCode="2"
+        android:versionName="2.0">
         <activity android:name=".MathMultiplication"></activity>
         <activity android:name=".MathActivity" />
         <activity android:name=".MainActivity">
