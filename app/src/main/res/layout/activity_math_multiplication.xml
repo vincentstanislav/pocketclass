@@ -40,7 +40,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card"
+                android:id="@+id/math_result"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_margin="8dp"
@@ -56,6 +56,7 @@
 
                     <!-- Title, secondary and supporting text -->
                     <TextView
+                        android:id="@+id/text_math_result"
                         android:layout_width="363dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -73,7 +74,7 @@
 
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card1"
+                    android:id="@+id/math_cd1"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_margin="8dp"
@@ -87,6 +88,7 @@
 
                         <!-- Title, secondary and supporting text -->
                         <TextView
+                            android:id="@+id/text_math_cd1"
                             android:layout_width="363dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
@@ -104,7 +106,7 @@
                 android:layout_height="match_parent"
                 android:layout_columnWeight="1">
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card2"
+                    android:id="@+id/math_cd2"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_margin="8dp"
@@ -118,6 +120,7 @@
 
                         <!-- Title, secondary and supporting text -->
                         <TextView
+                            android:id="@+id/text_math_cd2"
                             android:layout_width="363dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
@@ -135,7 +138,7 @@
                 android:layout_height="match_parent"
                 android:layout_columnWeight="1">
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card3"
+                    android:id="@+id/math_cd3"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_margin="8dp"
@@ -149,6 +152,7 @@
 
                         <!-- Title, secondary and supporting text -->
                         <TextView
+                            android:id="@+id/text_math_cd3"
                             android:layout_width="363dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
@@ -168,7 +172,7 @@
 
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card1"
+                    android:id="@+id/math_cd4"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_margin="8dp"
@@ -182,6 +186,7 @@
 
                         <!-- Title, secondary and supporting text -->
                         <TextView
+                            android:id="@+id/text_math_cd4"
                             android:layout_width="363dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
@@ -199,7 +204,7 @@
                 android:layout_height="match_parent"
                 android:layout_columnWeight="1">
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card2"
+                    android:id="@+id/math_cd5"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_margin="8dp"
@@ -213,6 +218,7 @@
 
                         <!-- Title, secondary and supporting text -->
                         <TextView
+                            android:id="@+id/text_math_cd5"
                             android:layout_width="363dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
@@ -230,7 +236,7 @@
                 android:layout_height="match_parent"
                 android:layout_columnWeight="1">
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card3"
+                    android:id="@+id/math_cd6"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_margin="8dp"
@@ -244,6 +250,7 @@
 
                         <!-- Title, secondary and supporting text -->
                         <TextView
+                            android:id="@+id/text_math_cd6"
                             android:layout_width="363dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
@@ -259,7 +266,7 @@
         </GridLayout>
 
         <Button
-            android:id="@+id/textButton"
+            android:id="@+id/math_button"
             android:layout_width="150dp"
             android:layout_height="80dp"
             android:text="Další"

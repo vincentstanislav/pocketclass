@@ -1,6 +1,6 @@
 package com.gloxeer.pocketclass;
 
-public class MathMultiplicationRandomSix {
+public class MathRandomSix {
     private int number1;
     private int number2;
     private int number3;
@@ -10,9 +10,7 @@ public class MathMultiplicationRandomSix {
     private int result;
     private int correct_answer;
 
-    public MathMultiplicationRandomSix(){}
-
-    public MathMultiplicationRandomSix(int number1, int number2, int number3, int number4, int number5, int number6, int result, int correct_answer){
+    public MathRandomSix(int number1, int number2, int number3, int number4, int number5, int number6, int result, int correct_answer){
         this.number1 = number1;
         this.number2 = number2;
         this.number3 = number3;
@@ -87,3 +85,4 @@ public class MathMultiplicationRandomSix {
         this.correct_answer = correct_answer;
     }
 }
+
