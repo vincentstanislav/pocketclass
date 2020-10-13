@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class MathMultiplication extends AppCompatActivity {
 
     //declare variable
-    private static final String TAG = null;
+    private static final String TAG = "MathMultiplicationActivity";
     private TextView cd1, cd2, cd3, cd4, cd5, cd6, result;
     int nb1, nb2, nb3, nb4, nb5, nb6, res, corAnswerPos, a, b;
     private Button nextButton;
@@ -29,21 +29,23 @@ public class MathMultiplication extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math_multiplication);
 
-
+        //loads first numbers
+        getQuestion();
+        assignToLayout();
 
         nextButton = findViewById(R.id.math_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "nextButton.setOnClickListener");
-                getQuestion();
-                assignToLayout();
                 if (clickCount == 6){
                     clickCount = 0;
                     finish();
                 } else {
                     clickCount++;
                 }
+                getQuestion();
+                assignToLayout();
             }
         });
     }
@@ -80,6 +82,8 @@ public class MathMultiplication extends AppCompatActivity {
                 arrList.get(5),
                 res,
                 corAnswerPos);
+        System.out.println("task: " + String.valueOf(arrList.get(5)));
+
     }
 
     private void assignToLayout(){
@@ -98,6 +102,7 @@ public class MathMultiplication extends AppCompatActivity {
         cd6.setText(String.valueOf(task.getNumber6()));
         result = findViewById(R.id.text_math_result);
         result.setText(a + " * " + b + " = " + String.valueOf(task.getResult()));
+        arrList.clear(); //   clear array list
     }
 
     private void finishTest(){
