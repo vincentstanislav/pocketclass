@@ -143,7 +143,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
        //}
     }
 
-    private void singleSelect(CardView cw){
+   /* private void singleSelect(CardView cw){
         ArrayList <CardView> arrayListCardView{
 
 
@@ -155,7 +155,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         ccd4.setCardBackgroundColor(Color.WHITE);
         ccd5.setCardBackgroundColor(Color.WHITE);
         ccd6.setCardBackgroundColor(Color.WHITE);
-    }
+    }*/
 
     private void nextQuestion(){
         getQuestion();
