@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,9 +26,10 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
     private Button nextButton;
     private ArrayList<Integer> arrList = new ArrayList<>();
     private static int MAX = 15;
+    private GridLayout gl;
     MathRandomSix task;
     int clickCount;
-    int questionsAmount = 5;
+    int questionsAmount = 6;
     int questionCounter = 0;
     boolean answered = false;
 
@@ -54,6 +56,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         cresult = findViewById(R.id.math_result);
 
         nextButton = findViewById(R.id.math_button);
+        gl = findViewById(R.id.grid_layout);
 
         //loads initial screen
         assignToLayoutFirst();
@@ -68,40 +71,17 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
-         /*   public void onClick(View v) {
-                Log.d(TAG, "nextButton.setOnClick");
-                displayAllFields();
-                if (questionCounter == questionsAmount){
-                    finish();
-                } else {
-                    questionCounter++;
-                    if (answered){
-                        showSolution();
-                        answered = false;
-                    } else {
-                        nextQuestion();
-                    }
-                }
-            }*/
             public void onClick(View v) {
                 Log.d(TAG, "nextButton.setOnClick");
                 displayAllFields();
-                if (questionCounter == questionsAmount){
-                    finish();}
-                else{
-                    if (answered) {
-                        showSolution();
-                        answered = false;
-                        } else {
-                        questionCounter++;
-                        //answered = false;
-                        nextQuestion();
-                        //Toast.makeText(MathMultiplication.this,"Vyber správnou odpověď", Toast.LENGTH_SHORT).show();
-                        }
+                if (answered) {
+                    showSolution();
+                    answered = false;
+                } else {
+                    questionCounter++;
+                    nextQuestion();
                 }
-
             }
-
         });
     }
 
@@ -109,67 +89,55 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         System.out.println("geID_start: " + String.valueOf(v.getId()));
 
-        if (!answered) {  //allow to select only one answer
-            switch (v.getId()) {
-                case R.id.math_cd1:
-                    ccd1.setCardBackgroundColor(Color.YELLOW);
-                    break;
-                case R.id.math_cd2:
-                    ccd2.setCardBackgroundColor(Color.YELLOW);
-                    break;
-                case R.id.math_cd3:
-                    ccd3.setCardBackgroundColor(Color.YELLOW);
-                    break;
-                case R.id.math_cd4:
-                    ccd4.setCardBackgroundColor(Color.YELLOW);
-                    break;
-                case R.id.math_cd5:
-                    ccd5.setCardBackgroundColor(Color.YELLOW);
-                    break;
-                case R.id.math_cd6:
-                    ccd6.setCardBackgroundColor(Color.YELLOW);
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + v.getId());
-            }
+        setDefaultColors();
+
+       switch (v.getId()) {
+            case R.id.math_cd1:
+                ccd1.setCardBackgroundColor(Color.YELLOW);
+                break;
+            case R.id.math_cd2:
+                ccd2.setCardBackgroundColor(Color.YELLOW);
+                break;
+            case R.id.math_cd3:
+                ccd3.setCardBackgroundColor(Color.YELLOW);
+                break;
+            case R.id.math_cd4:
+                ccd4.setCardBackgroundColor(Color.YELLOW);
+                break;
+            case R.id.math_cd5:
+                ccd5.setCardBackgroundColor(Color.YELLOW);
+                break;
+            case R.id.math_cd6:
+                ccd6.setCardBackgroundColor(Color.YELLOW);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + v.getId());
+        }
+
+        nextButton.setText("POTVRĎ");
+        answered = true;
+        enableObjects(false);
+
+        if (answered) {  //allow to select only one answer
+            nextButton.setEnabled(true);
+            //Toast.makeText(MathMultiplication.this,"Vyber správnou odpověď", Toast.LENGTH_SHORT).show();
         }
         System.out.println("geID_finish: " + String.valueOf(v.getId()));
         answered = true;
-
-       // if (answered = true){
-            nextButton.setText("POTVRĎ");
-        //} else {
-        //    nextButton.setText("DALŠÍ");
-       //}
     }
 
-   /* private void singleSelect(CardView cw){
-        ArrayList <CardView> arrayListCardView{
-
-
-        }
-
-        ccd1.setCardBackgroundColor(Color.WHITE);
-        ccd2.setCardBackgroundColor(Color.WHITE);
-        ccd3.setCardBackgroundColor(Color.WHITE);
-        ccd4.setCardBackgroundColor(Color.WHITE);
-        ccd5.setCardBackgroundColor(Color.WHITE);
-        ccd6.setCardBackgroundColor(Color.WHITE);
-    }*/
-
     private void nextQuestion(){
-        getQuestion();
-        assignToLayout();
+        if (questionCounter == questionsAmount){
+            finish();}
+        else {
+            setDefaultColors();
+            enableObjects(true);
+            getQuestion();
+            assignToLayout();
+        }
     }
 
     public void showSolution(){
-        ccd1.setCardBackgroundColor(Color.WHITE);
-        ccd2.setCardBackgroundColor(Color.WHITE);
-        ccd3.setCardBackgroundColor(Color.WHITE);
-        ccd4.setCardBackgroundColor(Color.WHITE);
-        ccd5.setCardBackgroundColor(Color.WHITE);
-        ccd6.setCardBackgroundColor(Color.WHITE);
-
 
         System.out.println("task: " + String.valueOf("CorrAnswer2: "+ corAnswerPos));
         switch (corAnswerPos+1  ){
@@ -192,9 +160,23 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
                 ccd6.setCardBackgroundColor(Color.GREEN);
                 break;
         }
+        result.setText(a + " * " + b + " = " + String.valueOf(task.getResult()));
         corAnswerPos = 0;
-        nextButton.setText("DALŠÍ");
 
+        if (questionCounter == questionsAmount-1){
+            nextButton.setText("UKONČIT");
+        } else {
+            nextButton.setText("DALŠÍ");
+        }
+    }
+
+    private void setDefaultColors(){
+        ccd1.setCardBackgroundColor(Color.WHITE);
+        ccd2.setCardBackgroundColor(Color.WHITE);
+        ccd3.setCardBackgroundColor(Color.WHITE);
+        ccd4.setCardBackgroundColor(Color.WHITE);
+        ccd5.setCardBackgroundColor(Color.WHITE);
+        ccd6.setCardBackgroundColor(Color.WHITE);
     }
 
     private void assignToLayoutFirst(){
@@ -208,7 +190,17 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         ccd6.setVisibility(View.GONE);
         cresult.setVisibility(View.GONE);
         //set starting text to the button
+
         nextButton.setText("ZAČNI");
+    }
+
+    private void enableObjects(boolean value){
+        ccd1.setEnabled(value);
+        ccd2.setEnabled(value);
+        ccd3.setEnabled(value);
+        ccd4.setEnabled(value);
+        ccd5.setEnabled(value);
+        ccd6.setEnabled(value);
     }
 
     private void displayAllFields(){
@@ -266,13 +258,12 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         cd4.setText(String.valueOf(task.getNumber4()));
         cd5.setText(String.valueOf(task.getNumber5()));
         cd6.setText(String.valueOf(task.getNumber6()));
-        result.setText(a + " * " + b + " = " + String.valueOf(task.getResult()));
+        result.setText(a + " * " + b + " = ?");
         arrList.clear(); //   clear array list
 
-        if (questionCounter == questionsAmount){
-            nextButton.setText("UKONČIT");
-        } else {
+        if (questionCounter != questionsAmount){
             nextButton.setText("ODPOVĚZ");
+            nextButton.setEnabled(false);
         }
     }
 
