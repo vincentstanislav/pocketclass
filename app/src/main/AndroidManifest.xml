@@ -12,9 +12,9 @@
         android:theme="@style/AppTheme"
         android:versionCode="2"
         android:versionName="2.0">
-        <activity android:name=".MathMultiplication"></activity>
-        <activity android:name=".MathActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MathMultiplication"/>
+        <!--<activity android:name=".MathActivity" />-->
+        <activity android:name=".MathActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class MathMultiplication extends AppCompatActivity implements View.OnClickListener{
 
     //declare variable
-    private static final String TAG = "MathMultiplicationActivity";
+    private static final String TAG = "MMultiplicationActivity";
     private TextView cd1, cd2, cd3, cd4, cd5, cd6, result;
     private CardView ccd1, ccd2, ccd3, ccd4, ccd5, ccd6, cresult;
     int nb1, nb2, nb3, nb4, nb5, nb6, res, corAnswerPos, a, b;
@@ -27,8 +27,8 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
     private static int MAX = 15;
     MathRandomSix task;
     int clickCount;
-    int questionsAmount = 3;
-    int questionCounter = 1;
+    int questionsAmount = 5;
+    int questionCounter = 0;
     boolean answered = false;
 
     @Override
@@ -36,6 +36,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math_multiplication);
 
+        //assign variables to layout objects
         cd1 = findViewById(R.id.text_math_cd1);
         cd2 = findViewById(R.id.text_math_cd2);
         cd3 = findViewById(R.id.text_math_cd3);
@@ -53,61 +54,112 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         cresult = findViewById(R.id.math_result);
 
         nextButton = findViewById(R.id.math_button);
-        //loads first numbers
-        nextQuestion();
 
+        //loads initial screen
+        assignToLayoutFirst();
+
+        //set on click listener onClick method
+        ccd1.setOnClickListener(this);
+        ccd2.setOnClickListener(this);
+        ccd3.setOnClickListener(this);
+        ccd4.setOnClickListener(this);
+        ccd5.setOnClickListener(this);
+        ccd6.setOnClickListener(this);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Log.d(TAG, "nextButton.setOnClickListener");
+         /*   public void onClick(View v) {
+                Log.d(TAG, "nextButton.setOnClick");
+                displayAllFields();
                 if (questionCounter == questionsAmount){
                     finish();
                 } else {
                     questionCounter++;
+                    if (answered){
+                        showSolution();
+                        answered = false;
+                    } else {
+                        nextQuestion();
+                    }
                 }
-                if (answered) {
-                    nextQuestion();
-                    answered = false;
+            }*/
+            public void onClick(View v) {
+                Log.d(TAG, "nextButton.setOnClick");
+                displayAllFields();
+                if (questionCounter == questionsAmount){
+                    finish();}
+                else{
+                    if (answered) {
+                        showSolution();
+                        answered = false;
+                        } else {
+                        questionCounter++;
+                        //answered = false;
+                        nextQuestion();
+                        //Toast.makeText(MathMultiplication.this,"Vyber správnou odpověď", Toast.LENGTH_SHORT).show();
+                        }
                 }
 
             }
+
         });
     }
 
     // @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.math_cd1:
-                ccd1 = (CardView) findViewById(R.id.math_cd1);
-                ccd1.setCardBackgroundColor(Color.YELLOW);
-                Toast.makeText(this, "Math", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.math_cd2:
-                ccd2 = (CardView) findViewById(R.id.math_cd2);
-                ccd2.setCardBackgroundColor(Color.YELLOW);
-                Toast.makeText(this, "Math", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.math_cd3:
-                ccd3.setCardBackgroundColor(Color.YELLOW);
-                break;
-            case R.id.math_cd4:
-                ccd4.setCardBackgroundColor(Color.YELLOW);
-                break;
-            case R.id.math_cd5:
-                ccd5.setCardBackgroundColor(Color.YELLOW);
-                break;
-            case R.id.math_cd6:
-                ccd6.setCardBackgroundColor(Color.YELLOW);
-                break;
+        System.out.println("geID_start: " + String.valueOf(v.getId()));
+
+        if (!answered) {  //allow to select only one answer
+            switch (v.getId()) {
+                case R.id.math_cd1:
+                    ccd1.setCardBackgroundColor(Color.YELLOW);
+                    break;
+                case R.id.math_cd2:
+                    ccd2.setCardBackgroundColor(Color.YELLOW);
+                    break;
+                case R.id.math_cd3:
+                    ccd3.setCardBackgroundColor(Color.YELLOW);
+                    break;
+                case R.id.math_cd4:
+                    ccd4.setCardBackgroundColor(Color.YELLOW);
+                    break;
+                case R.id.math_cd5:
+                    ccd5.setCardBackgroundColor(Color.YELLOW);
+                    break;
+                case R.id.math_cd6:
+                    ccd6.setCardBackgroundColor(Color.YELLOW);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + v.getId());
+            }
         }
+        System.out.println("geID_finish: " + String.valueOf(v.getId()));
         answered = true;
+
+       // if (answered = true){
+            nextButton.setText("POTVRĎ");
+        //} else {
+        //    nextButton.setText("DALŠÍ");
+       //}
+    }
+
+    private void singleSelect(CardView cw){
+        ArrayList <CardView> arrayListCardView{
+
+
+        }
+
+        ccd1.setCardBackgroundColor(Color.WHITE);
+        ccd2.setCardBackgroundColor(Color.WHITE);
+        ccd3.setCardBackgroundColor(Color.WHITE);
+        ccd4.setCardBackgroundColor(Color.WHITE);
+        ccd5.setCardBackgroundColor(Color.WHITE);
+        ccd6.setCardBackgroundColor(Color.WHITE);
     }
 
     private void nextQuestion(){
         getQuestion();
         assignToLayout();
-        showSolution();
     }
 
     public void showSolution(){
@@ -141,12 +193,34 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
                 break;
         }
         corAnswerPos = 0;
+        nextButton.setText("DALŠÍ");
 
-       if (answered = true){
-            nextButton.setText("DALSÍ");
-       } else {
-           nextButton.setText("POTVRĎ");
-       }
+    }
+
+    private void assignToLayoutFirst(){
+        Log.d(TAG, "assignToLayoutFirst");
+        // hide all the fields
+        ccd1.setVisibility(View.GONE);
+        ccd2.setVisibility(View.GONE);
+        ccd3.setVisibility(View.GONE);
+        ccd4.setVisibility(View.GONE);
+        ccd5.setVisibility(View.GONE);
+        ccd6.setVisibility(View.GONE);
+        cresult.setVisibility(View.GONE);
+        //set starting text to the button
+        nextButton.setText("ZAČNI");
+    }
+
+    private void displayAllFields(){
+        Log.d(TAG, "displayAllFields");
+        // display all the fields
+        ccd1.setVisibility(View.VISIBLE);
+        ccd2.setVisibility(View.VISIBLE);
+        ccd3.setVisibility(View.VISIBLE);
+        ccd4.setVisibility(View.VISIBLE);
+        ccd5.setVisibility(View.VISIBLE);
+        ccd6.setVisibility(View.VISIBLE);
+        cresult.setVisibility(View.VISIBLE);
     }
 
     private void getQuestion(){
@@ -194,11 +268,17 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         cd6.setText(String.valueOf(task.getNumber6()));
         result.setText(a + " * " + b + " = " + String.valueOf(task.getResult()));
         arrList.clear(); //   clear array list
+
+        if (questionCounter == questionsAmount){
+            nextButton.setText("UKONČIT");
+        } else {
+            nextButton.setText("ODPOVĚZ");
+        }
     }
 
-    private void finishMultiplacation() {
+    /*private void finishMultiplacation() {
         Intent intent = new Intent();
         startActivity(intent);
-    }
+    }*/
 
 }
