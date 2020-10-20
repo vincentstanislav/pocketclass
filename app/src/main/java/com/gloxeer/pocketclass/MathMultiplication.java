@@ -22,10 +22,10 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
     private static final String TAG = "MMultiplicationActivity";
     private TextView cd1, cd2, cd3, cd4, cd5, cd6, result;
     private CardView ccd1, ccd2, ccd3, ccd4, ccd5, ccd6, cresult;
-    int nb1, nb2, nb3, nb4, nb5, nb6, res, corAnswerPos, a, b;
+    int res, corAnswerPos, a, b;
     private Button nextButton;
     private ArrayList<Integer> arrList = new ArrayList<>();
-    private static int MAX = 15;
+    private static final int MAX = 15;
     private GridLayout gl;
     MathRandomSix task;
     int clickCount;
@@ -216,24 +216,45 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
     }
 
     private void getQuestion(){
+        int numbersCount = 6;
+        int i = 0;
+        int nb1, nb2, resNumber = 0;
+        boolean repetition = true;
+
         Log.d(TAG, "getQuestion");
         a = (int) (Math.random() * MAX);
         b = (int) (Math.random() * MAX);
         res = a * b;
 
-        corAnswerPos = (int) (Math.random() * 6);
+        corAnswerPos = (int) (Math.random() * numbersCount);
 
-        System.out.println(String.valueOf(corAnswerPos));
-        int i = 0;
-        while (i < 6){
-            System.out.println("i: " + String.valueOf(i));
+        while (i < numbersCount){
+           // System.out.println("i, res: " + String.valueOf(i) + "," + String.valueOf(res));
             if (i == corAnswerPos){
                 arrList.add(res);
             } else {
-                nb1 = (int) (Math.random() * MAX);
-                nb2 = (int) (Math.random() * MAX);
-                arrList.add(nb1 * nb2);
-                System.out.println("nb: " + String.valueOf(nb1 * nb2));
+
+                while (repetition = true) {
+                    nb1 = generateRandomInt();
+                    nb2 = generateRandomInt();
+                    resNumber = nb1 * nb2;
+                    //arrList.add(resNumber);
+
+                    for (int j = 0; j < i+1; j++) {
+                        if ((arrList.get(j) == resNumber) && (j>0)){
+                           // System.out.println("j, newres: " + String.valueOf(j) + "," + String.valueOf(resNumber));
+                            break;
+                        }
+                        if (j == i-1) repetition = false;
+                    }
+
+                }
+                arrList.add(resNumber);
+               // while (repetition = false) {
+                //ensure that there are no duplicities in the answers
+
+
+                //System.out.println("nb: " + String.valueOf(nb1 * nb2));
             }
             i++;
         }
@@ -248,6 +269,10 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
                 res,
                 corAnswerPos);
         System.out.println("task: " + String.valueOf("CorrAnswer1: " + corAnswerPos));
+    }
+
+    private int generateRandomInt(){
+        return (int) (Math.random() * MAX);
     }
 
     private void assignToLayout(){
