@@ -217,7 +217,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
 
     private void getQuestion(){
         int numbersCount = 6;
-        int i = 0;
+        int i = 1;
         int nb1, nb2, resNumber = 0;
         boolean repetition = true;
 
@@ -227,25 +227,26 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         res = a * b;
 
         corAnswerPos = (int) (Math.random() * numbersCount);
+        arrList.add(res);
 
         while (i < numbersCount){
            // System.out.println("i, res: " + String.valueOf(i) + "," + String.valueOf(res));
-            if (i == corAnswerPos){
+           /* if (i == corAnswerPos){
                 arrList.add(res);
-            } else {
+            } else {*/
 
-                while (repetition = true) {
+                while (repetition == true) {
                     nb1 = generateRandomInt();
                     nb2 = generateRandomInt();
                     resNumber = nb1 * nb2;
                     //arrList.add(resNumber);
 
-                    for (int j = 0; j < i+1; j++) {
-                        if ((arrList.get(j) == resNumber) && (j>0)){
+                    for (int j = 0; j < i; j++) {
+                        if (arrList.get(j) == resNumber){
                            // System.out.println("j, newres: " + String.valueOf(j) + "," + String.valueOf(resNumber));
                             break;
                         }
-                        if (j == i-1) repetition = false;
+                        else if (j == i-1) {repetition = false;}
                     }
 
                 }
@@ -255,9 +256,12 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
 
 
                 //System.out.println("nb: " + String.valueOf(nb1 * nb2));
-            }
+            //}
+            repetition = true;
             i++;
         }
+        arrList.add(corAnswerPos, arrList.get(0));
+        arrList.remove(0);
 
        task = new MathRandomSix(
                 arrList.get(0),
