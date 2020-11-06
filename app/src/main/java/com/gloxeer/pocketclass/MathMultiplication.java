@@ -20,12 +20,12 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
 
     //declare variable
     private static final String TAG = "MMultiplicationActivity";
+    private static final int MAX = 15;
     private TextView cd1, cd2, cd3, cd4, cd5, cd6, result;
     private CardView ccd1, ccd2, ccd3, ccd4, ccd5, ccd6, cresult;
     int res, corAnswerPos, a, b;
     private Button nextButton;
     private ArrayList<Integer> arrList = new ArrayList<>();
-    private static final int MAX = 15;
     private GridLayout gl;
     MathRandomSix task;
     int clickCount;
@@ -116,14 +116,13 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
 
         nextButton.setText("POTVRĎ");
         answered = true;
-        enableObjects(false);
 
-        if (answered) {  //allow to select only one answer
-            nextButton.setEnabled(true);
-            //Toast.makeText(MathMultiplication.this,"Vyber správnou odpověď", Toast.LENGTH_SHORT).show();
-        }
+        nextButton.setText("POTVRĎ");
+        nextButton.setEnabled(true);
+
+        nextButton.setVisibility(View.VISIBLE);
+
         System.out.println("geID_finish: " + String.valueOf(v.getId()));
-        answered = true;
     }
 
     private void nextQuestion(){
@@ -140,7 +139,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
     public void showSolution(){
 
         System.out.println("task: " + String.valueOf("CorrAnswer2: "+ corAnswerPos));
-        switch (corAnswerPos+1  ){
+        switch (corAnswerPos){
             case 1:
                 ccd1.setCardBackgroundColor(Color.GREEN);
                 break;
@@ -160,6 +159,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
                 ccd6.setCardBackgroundColor(Color.GREEN);
                 break;
         }
+        enableObjects(false);
         result.setText(a + " * " + b + " = " + String.valueOf(task.getResult()));
         corAnswerPos = 0;
 
@@ -216,24 +216,21 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
     }
 
     private void getQuestion(){
+        Log.d(TAG, "getQuestion");
+
         int numbersCount = 6;
         int i = 1;
         int nb1, nb2, resNumber = 0;
         boolean repetition = true;
 
-        Log.d(TAG, "getQuestion");
         a = (int) (Math.random() * MAX);
         b = (int) (Math.random() * MAX);
         res = a * b;
 
-        corAnswerPos = (int) (Math.random() * numbersCount);
+        corAnswerPos = (int) (Math.floor(Math.random() * numbersCount) + 1);
         arrList.add(res);
 
         while (i < numbersCount){
-           // System.out.println("i, res: " + String.valueOf(i) + "," + String.valueOf(res));
-           /* if (i == corAnswerPos){
-                arrList.add(res);
-            } else {*/
 
                 while (repetition == true) {
                     nb1 = generateRandomInt();
@@ -292,7 +289,9 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
 
         if (questionCounter != questionsAmount){
             nextButton.setText("ODPOVĚZ");
-            nextButton.setEnabled(false);
+            nextButton.setVisibility(View.INVISIBLE);
+            Toast.makeText(MathMultiplication.this,"Vyber správnou odpověď", Toast.LENGTH_SHORT).show();
+            //setEnabled(false);
         }
     }
 
