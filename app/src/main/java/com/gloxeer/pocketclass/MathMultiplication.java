@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.sip.SipSession;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,23 +17,37 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MathMultiplication extends AppCompatActivity implements View.OnClickListener{
 
     //declare variable
     private static final String TAG = "MMultiplicationActivity";
+    private static final long COUNTDOWN_IN_MILLIS = 30000;
     private static final int MAX = 15;
+
     private TextView cd1, cd2, cd3, cd4, cd5, cd6, result;
     private CardView ccd1, ccd2, ccd3, ccd4, ccd5, ccd6, cresult;
+    private int selectionId;
+    private int score = 0;
+    private int questionCnt = 0;
     int res, corAnswerPos, a, b;
+    private TextView textViewScore;
+    private TextView textViewQuestionCount;
     private Button nextButton;
     private ArrayList<Integer> arrList = new ArrayList<>();
     private GridLayout gl;
+    private CountDownTimer countDownTimer;
+    private TextView textViewCountDown;
+    private long timeLeftInMillis;
+    private ColorStateList textColorDefaultCD;
+
     MathRandomSix task;
     int clickCount;
     int questionsAmount = 6;
     int questionCounter = 0;
     boolean answered = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +70,12 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         ccd5 = findViewById(R.id.math_cd5);
         ccd6 = findViewById(R.id.math_cd6);
         cresult = findViewById(R.id.math_result);
+
+        textViewCountDown = findViewById(R.id.text_view_countdown);
+        textColorDefaultCD =textViewCountDown.getTextColors();
+
+        textViewQuestionCount = findViewById(R.id.text_view_questions_count);
+        textViewScore = findViewById(R.id.text_view_score);
 
         nextButton = findViewById(R.id.math_button);
         gl = findViewById(R.id.grid_layout);
@@ -78,6 +100,8 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
                     showSolution();
                     answered = false;
                 } else {
+                    if (countDownTimer != null){   //cancel countdown in case the timer is running
+                        countDownTimer.cancel();}
                     questionCounter++;
                     nextQuestion();
                 }
@@ -90,24 +114,31 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         System.out.println("geID_start: " + String.valueOf(v.getId()));
 
         setDefaultColors();
+        selectionId = 0;
 
        switch (v.getId()) {
             case R.id.math_cd1:
                 ccd1.setCardBackgroundColor(Color.YELLOW);
+                selectionId = 1;
                 break;
             case R.id.math_cd2:
                 ccd2.setCardBackgroundColor(Color.YELLOW);
+                selectionId = 2;
                 break;
             case R.id.math_cd3:
                 ccd3.setCardBackgroundColor(Color.YELLOW);
+                selectionId = 3;
                 break;
             case R.id.math_cd4:
                 ccd4.setCardBackgroundColor(Color.YELLOW);
+                selectionId = 4;
                 break;
             case R.id.math_cd5:
+                selectionId = 5;
                 ccd5.setCardBackgroundColor(Color.YELLOW);
                 break;
             case R.id.math_cd6:
+                selectionId = 6;
                 ccd6.setCardBackgroundColor(Color.YELLOW);
                 break;
             default:
@@ -122,10 +153,15 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
 
         nextButton.setVisibility(View.VISIBLE);
 
-        System.out.println("geID_finish: " + String.valueOf(v.getId()));
+        System.out.println("geID_finish: " + String.valueOf(selectionId));
+    }
+
+    private void scoreCount(){
+        if (selectionId == corAnswerPos) score++;
     }
 
     private void nextQuestion(){
+        questionCnt++;
         if (questionCounter == questionsAmount){
             finish();}
         else {
@@ -161,6 +197,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         }
         enableObjects(false);
         result.setText(a + " * " + b + " = " + String.valueOf(task.getResult()));
+        scoreCount();
         corAnswerPos = 0;
 
         if (questionCounter == questionsAmount-1){
@@ -168,6 +205,8 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         } else {
             nextButton.setText("DALŠÍ");
         }
+
+      // return results
     }
 
     private void setDefaultColors(){
@@ -182,6 +221,9 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
     private void assignToLayoutFirst(){
         Log.d(TAG, "assignToLayoutFirst");
         // hide all the fields
+        score = 0;
+        questionCnt = 0;
+
         ccd1.setVisibility(View.GONE);
         ccd2.setVisibility(View.GONE);
         ccd3.setVisibility(View.GONE);
@@ -291,9 +333,60 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
             nextButton.setText("ODPOVĚZ");
             nextButton.setVisibility(View.INVISIBLE);
             Toast.makeText(MathMultiplication.this,"Vyber správnou odpověď", Toast.LENGTH_SHORT).show();
+
+            textViewScore.setText("Score: "+String.valueOf(score));
+            textViewQuestionCount.setText("Questions: " + String.valueOf(questionCnt) + "/"+ String.valueOf(questionsAmount));
             //setEnabled(false);
         }
+
+        timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+        startCountDown();
     }
+
+    private void startCountDown(){
+        countDownTimer = new CountDownTimer(timeLeftInMillis,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                System.out.println("task: " + String.valueOf("Finish!"));
+                timeLeftInMillis = 0;
+                updateCountDownText();
+                showSolution();
+                nextButton.setText("DALŠi");
+                nextButton.setEnabled(true);
+                nextButton.setVisibility(View.VISIBLE);
+            }
+        }.start();
+    }
+
+    private void updateCountDownText(){
+        int minutes = (int) (timeLeftInMillis / 1000) / 60;
+        int seconds = (int) (timeLeftInMillis / 1000) % 60;
+
+        String timeFormatted = String.format(Locale.getDefault(),   "%02d:%02d", minutes, seconds);
+
+        textViewCountDown.setText(timeFormatted);
+
+        if (timeLeftInMillis < 10000){
+            textViewCountDown.setTextColor(Color.RED);
+        } else {
+            textViewCountDown.setTextColor(textColorDefaultCD);
+        }
+
+    }
+
+   /* @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer != null){
+            countDownTimer.cancel();
+        }
+    }*/
 
     /*private void finishMultiplacation() {
         Intent intent = new Intent();
