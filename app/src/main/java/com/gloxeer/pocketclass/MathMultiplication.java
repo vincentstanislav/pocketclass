@@ -31,6 +31,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
     private int selectionId;
     private int score = 0;
     private int questionCnt = 0;
+    private int scorePercentage;
     int res, corAnswerPos, a, b;
     private TextView textViewScore;
     private TextView textViewQuestionCount;
@@ -44,7 +45,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
 
     MathRandomSix task;
     int clickCount;
-    int questionsAmount = 6;
+    int questionsAmount = 3;
     int questionCounter = 0;
     boolean answered = false;
 
@@ -163,13 +164,23 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
     private void nextQuestion(){
         questionCnt++;
         if (questionCounter == questionsAmount){
-            finish();}
+            getScorePercentage();
+            //finish();
+            System.out.println("socre passed: " + String.valueOf(scorePercentage) + " " + String.valueOf(score) + " " + String.valueOf(questionCnt));
+            Intent intent = new Intent(MathMultiplication.this, Evaluation.class);
+            intent.putExtra("scoreValue", scorePercentage);
+            startActivity(intent);
+        }
         else {
             setDefaultColors();
             enableObjects(true);
             getQuestion();
             assignToLayout();
         }
+    }
+
+    public void getScorePercentage() {
+        scorePercentage = (int) ((score * 100)/questionCnt);
     }
 
     public void showSolution(){
@@ -201,7 +212,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         corAnswerPos = 0;
 
         if (questionCounter == questionsAmount-1){
-            nextButton.setText("UKONČIT");
+            nextButton.setText("HODNOCENÍ");
         } else {
             nextButton.setText("DALŠÍ");
         }
@@ -222,6 +233,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         Log.d(TAG, "assignToLayoutFirst");
         // hide all the fields
         score = 0;
+        scorePercentage = 0;
         questionCnt = 0;
 
         ccd1.setVisibility(View.GONE);
@@ -380,6 +392,8 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
 
     }
 
+    
+    
    /* @Override
     protected void onDestroy() {
         super.onDestroy();

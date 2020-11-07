@@ -12,15 +12,15 @@
         android:theme="@style/AppTheme"
         android:versionCode="4"
         android:versionName="3.1">
-        <activity android:name=".Evaluation">
+        <activity android:name=".Evaluation"/>
+        <activity android:name=".MathMultiplication"/> <!-- <activity android:name=".MathActivity" /> -->
+        <activity android:name=".MathActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MathMultiplication" /> <!-- <activity android:name=".MathActivity" /> -->
-        <activity android:name=".MathActivity"/>
     </application>
 
 </manifest>
