@@ -163,7 +163,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
 
     private void nextQuestion(){
         questionCnt++;
-        if (questionCounter == questionsAmount){
+        if (questionCounter == questionsAmount+1){
             getScorePercentage();
             //finish();
             System.out.println("socre passed: " + String.valueOf(scorePercentage) + " " + String.valueOf(score) + " " + String.valueOf(questionCnt));
@@ -180,7 +180,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
     }
 
     public void getScorePercentage() {
-        scorePercentage = (int) ((score * 100)/questionCnt);
+        scorePercentage = (int) ((score * 100)/questionsAmount);
     }
 
     public void showSolution(){
@@ -211,7 +211,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         scoreCount();
         corAnswerPos = 0;
 
-        if (questionCounter == questionsAmount-1){
+        if (questionCounter == questionsAmount){
             nextButton.setText("HODNOCENÍ");
         } else {
             nextButton.setText("DALŠÍ");
@@ -341,7 +341,7 @@ public class MathMultiplication extends AppCompatActivity implements View.OnClic
         result.setText(a + " * " + b + " = ?");
         arrList.clear(); //   clear array list
 
-        if (questionCounter != questionsAmount){
+        if (questionCounter != questionsAmount+1){
             nextButton.setText("ODPOVĚZ");
             nextButton.setVisibility(View.INVISIBLE);
             Toast.makeText(MathMultiplication.this,"Vyber správnou odpověď", Toast.LENGTH_SHORT).show();

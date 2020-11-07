@@ -53,7 +53,7 @@
                 android:id="@+id/text_view_score"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:text="Score: 2"
+                android:text="Score:"
                 android:layout_columnSpan="3"
                 android:paddingLeft="5dp"
                 />
@@ -62,7 +62,7 @@
                 android:id="@+id/text_view_questions_count"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:text="Questions: 1/5"
+                android:text="Questions:"
                 android:layout_columnSpan="3"
                 android:paddingLeft="5dp"
                 android:paddingBottom="10dp"
