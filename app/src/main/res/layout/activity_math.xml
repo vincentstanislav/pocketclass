@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true">
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
@@ -44,40 +44,39 @@
             android:layout_below="@+id/appbar_layout">
 
             <LinearLayout
-                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_margin="10dp"
-                android:layout_width="0dp">
+                android:layout_weight="1">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/multiplication"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/primary"
-                    app:cardCornerRadius="20dp"
                     android:layout_margin="8dp"
+                    android:backgroundTint="@color/primary"
                     android:elevation="2dp"
+                    app:cardCornerRadius="20dp"
                     app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="20dp"
+                        android:layout_below="@+id/card_sample"
                         android:background="@drawable/gradient_background"
-                        android:layout_below="@+id/card_sample">
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
                         <!-- Media -->
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:id="@+id/img_multiplication"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/multiplication"
-                            app:civ_border_width="3dp"
                             android:layout_gravity="center_horizontal"
-                            app:civ_border_color="#FF000000"/>
+                            android:src="@drawable/multiplication"
+                            app:civ_border_color="#FF000000"
+                            app:civ_border_width="3dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -89,11 +88,10 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity = "center"
+                                android:layout_gravity="center"
                                 android:text="Násobení"
-                                android:textSize="13dp"
                                 android:textColor="@color/primary_text"
-                                />
+                                android:textSize="13dp" />
                         </LinearLayout>
 
                         <!-- Buttons -->
@@ -102,6 +100,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -161,6 +160,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -196,7 +196,7 @@
                         <!-- Media -->
                         <de.hdodenhof.circleimageview.CircleImageView
                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:id="@+id/img_multiplication"
+                            android:id="@+id/img_multiplication1"
                             android:layout_width="150dp"
                             android:layout_height="100dp"
                             android:src="@drawable/multiplication"

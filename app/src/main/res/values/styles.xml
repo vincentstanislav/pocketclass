@@ -31,4 +31,9 @@
         <item name="cornerSize">8dp</item>
     </style>
 
+    <style name="CircularDeterminateProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/evaluation_progress_bar</item>
+    </style>
+
 </resources>
