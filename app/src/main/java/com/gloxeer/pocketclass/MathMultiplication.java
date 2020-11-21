@@ -22,7 +22,7 @@ import java.util.Locale;
 public class MathMultiplication extends AppCompatActivity implements View.OnClickListener{
 
     //declare variable
-    private static final String TAG = "MMultiplicationActivity";
+    private static final String TAG = "MultiplicationActivity";
     private static final long COUNTDOWN_IN_MILLIS = 30000;
     private static final int MAX = 15;
 
