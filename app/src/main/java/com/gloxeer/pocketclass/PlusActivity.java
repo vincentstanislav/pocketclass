@@ -19,6 +19,7 @@ import java.util.Random;
 
 import static android.graphics.Color.GREEN;
 import static android.graphics.Color.WHITE;
+import static android.graphics.Color.YELLOW;
 
 
 public class PlusActivity extends AppCompatActivity implements View.OnClickListener{
@@ -137,7 +138,7 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
                 setSelectedCellColor(cell3_3);
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + v.getId());
+                //throw new IllegalStateException("Unexpected value: " + v.getId());
         }
     }
 
@@ -150,7 +151,7 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
         cell3_2.setCardBackgroundColor(WHITE);
         cell3_3.setCardBackgroundColor(WHITE);
         Log.d(TAG, "onClick1 :"+cardView);
-        cardView.setCardBackgroundColor(R.color.primary);
+        cardView.setCardBackgroundColor(Color.YELLOW);
     }
 
     //hide elements

@@ -8,6 +8,24 @@
     android:orientation="vertical"
     tools:context=".PlusActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liftOnScroll="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/page_title"
+            app:menu="@menu/top_app_bar"
+            app:navigationIcon="@drawable/ic_baseline_menu_24"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +36,7 @@
             android:layout_height="match_parent"
             android:weightSum="9">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cell1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -30,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Sample"/>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
         </TableRow>
 
         <TableRow
@@ -38,11 +56,11 @@
             android:layout_height="match_parent"
             android:weightSum="9">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cell2_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/divider"
+                app:strokeColor="@color/primary_text"
                 android:layout_weight="3">
                 <TextView
                     android:id="@+id/cell2_1tw"
@@ -50,13 +68,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="TEST"/>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cell2_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/icons"
                 android:layout_weight="3">
                 <TextView
                     android:id="@+id/cell2_2tw"
@@ -64,13 +81,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="TEST"/>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cell2_3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/primary"
                 android:layout_weight="3">
                 <TextView
                     android:id="@+id/cell2_3tw"
@@ -78,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="TEST"/>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
         </TableRow>
 
         <TableRow
@@ -86,11 +102,10 @@
             android:layout_height="match_parent"
             android:weightSum="9">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cell3_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/divider"
                 android:layout_weight="3">
                 <TextView
                     android:id="@+id/cell3_1tw"
@@ -98,13 +113,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="TEST"/>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cell3_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/icons"
                 android:layout_weight="3">
                 <TextView
                     android:id="@+id/cell3_2tw"
@@ -112,13 +126,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="TEST"/>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cell3_3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/primary"
                 android:layout_weight="3">
                 <TextView
                     android:id="@+id/cell3_3tw"
@@ -126,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="TEST"/>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
         </TableRow>
     </TableLayout>
 
