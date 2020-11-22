@@ -53,18 +53,20 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
         actionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "actionBtn.setOnClickListener :"+status);
-
+                Log.d(TAG, "actionBtn.setOnClickListener :" + status + " , " + answered);
+                    if (answered == true) {status = 2;}
                     switch (status) {
                         case 1:
-                            if (questionCntr == 0){hideActivityElements(View.VISIBLE);}
+                            if (questionCntr == 0){hideActivityElements(View.VISIBLE);} //display activity objects
                             getQuestion();
                             status = 2;
-                            actionBtn.setText("ODPOVĚZ");
+                            actionBtn.setText("POTVRĎ");
                             break;
                         case 2:
-
-                            status = 3;
+                            getAnswer();
+                            diableActivityObjects();
+                            status = 1;
+                            //actionBtn.setEnabled(false);
                             break;
                         case 3:
                             break;
@@ -78,6 +80,7 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
     //METHODS DEFINITION
 
     private void varInit(){
+        Log.d(TAG, "varInit()");
         cell1 = findViewById(R.id.cell1);
         cell2_1 = findViewById(R.id.cell2_1);
         cell2_2 = findViewById(R.id.cell2_2);
@@ -103,6 +106,7 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
 
     //make activity objects clickable
     private void onClickInit() {
+        Log.d(TAG, "onClickInit()");
         cell1.setOnClickListener(this);
         cell2_1.setOnClickListener(this);
         cell2_2.setOnClickListener(this);
@@ -120,42 +124,45 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
         answered = false;
         switch (v.getId()){
             case R.id.cell2_1:
-                setSelectedCellColor(cell2_1);
+                setCellColor(cell2_1,2);
                 break;
             case R.id.cell2_2:
-                setSelectedCellColor(cell2_2);
+                setCellColor(cell2_2,2);
                 break;
             case R.id.cell2_3:
-                setSelectedCellColor(cell2_3);
+                setCellColor(cell2_3,2);
                 break;
             case R.id.cell3_1:
-                setSelectedCellColor(cell3_1);
+                setCellColor(cell3_1,2);
                 break;
             case R.id.cell3_2:
-                setSelectedCellColor(cell3_2);
+                setCellColor(cell3_2,2);
                 break;
             case R.id.cell3_3:
-                setSelectedCellColor(cell3_3);
+                setCellColor(cell3_3,2);
                 break;
             default:
                 //throw new IllegalStateException("Unexpected value: " + v.getId());
         }
     }
 
-    //set selected cell background color
-    private void setSelectedCellColor (CardView cardView) {
+    //set selected cell background color, type: 1 deletes all cells to default color, type2: selects highlights selection
+    private void setCellColor (CardView cardView, int type) {
+        Log.d(TAG, "setCellColor()");
+        answered = true;
         cell2_1.setCardBackgroundColor(WHITE);
         cell2_2.setCardBackgroundColor(WHITE);
         cell2_3.setCardBackgroundColor(WHITE);
         cell3_1.setCardBackgroundColor(WHITE);
         cell3_2.setCardBackgroundColor(WHITE);
         cell3_3.setCardBackgroundColor(WHITE);
-        Log.d(TAG, "onClick1 :"+cardView);
-        cardView.setCardBackgroundColor(Color.YELLOW);
+
+        if (type == 2) { cardView.setCardBackgroundColor(Color.YELLOW);}
     }
 
     //hide elements
     private void hideActivityElements(int select) {
+        Log.d(TAG, "hideActivityElements");
         cell2_1.setVisibility(select);
         cell2_2.setVisibility(select);
         cell2_3.setVisibility(select);
@@ -166,6 +173,9 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
 
     //get next question
     private void getQuestion() {
+        Log.d(TAG, "getQuestion()");
+        setCellColor(cell2_1,1);  // NEED TO CLEAR COLOR TO ALL CELLS
+        cell2_1.setEnabled(true);       // NEED TO ENABLE ALL OBJECTS
         random = (int) (Math.random() * 15);
         cell1tw.setText("21 + 58 = ");
         cell2_1tw.setText(String.valueOf(random));
@@ -176,5 +186,15 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
         cell3_3tw.setText(String.valueOf(random));
     }
 
+    //get correct answer
+    private void getAnswer() {
+        Log.d(TAG, "getAnswer() ");
+        answered = false;
+        cell2_1.setCardBackgroundColor(GREEN);
+    }
+
+    private void diableActivityObjects() {
+        cell2_1.setEnabled(false);
+    }
 
 }
