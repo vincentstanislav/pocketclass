@@ -23,6 +23,9 @@ import static android.graphics.Color.YELLOW;
 
 
 public class PlusActivity extends AppCompatActivity implements View.OnClickListener{
+    //MISSING - correct answers counter, questions generator, pass results to evaluation
+
+
     //VARIABLE DECLARATION
     private static final String TAG = "plusActivity_start";
     CardView cell1, cell2_1, cell2_2, cell2_3, cell3_1, cell3_2, cell3_3;
@@ -30,7 +33,8 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
     Button actionBtn;
     Boolean answered;
     int questionCntr;
-    int status; // 1-new question, 2-answered, 3-evaluated
+    int questionAmount = 2;
+    int status; // 1-getQuestion, 2-getAnswered, 3-getEvaluation
     int random;
     //LayoutInflater inflater;
 
@@ -58,7 +62,9 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
                     switch (status) {
                         case 1:
                             if (questionCntr == 0){hideActivityElements(View.VISIBLE);} //display activity objects
+                            questionCntr++;
                             getQuestion();
+                            enableActivityObjects();
                             status = 2;
                             actionBtn.setText("POTVRĎ");
                             break;
@@ -66,9 +72,15 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
                             getAnswer();
                             diableActivityObjects();
                             status = 1;
+                            if (questionCntr == questionAmount)
+                                    {actionBtn.setText("VÝSLEDEK");
+                                     status = 3;}
+                                else
+                                    {actionBtn.setText("DALšÍ");}
                             //actionBtn.setEnabled(false);
                             break;
                         case 3:
+                            finish();      //CHANGE BY REDIRECT TO RESULTS
                             break;
 
                     }
@@ -195,6 +207,20 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
 
     private void diableActivityObjects() {
         cell2_1.setEnabled(false);
+        cell2_2.setEnabled(false);
+        cell2_3.setEnabled(false);
+        cell3_1.setEnabled(false);
+        cell3_2.setEnabled(false);
+        cell3_3.setEnabled(false);
+    }
+
+    private void enableActivityObjects() {
+        cell2_1.setEnabled(true);
+        cell2_2.setEnabled(true);
+        cell2_3.setEnabled(true);
+        cell3_1.setEnabled(true);
+        cell3_2.setEnabled(true);
+        cell3_3.setEnabled(true);
     }
 
 }
