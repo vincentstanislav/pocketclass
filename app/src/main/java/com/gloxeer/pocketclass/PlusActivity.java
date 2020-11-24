@@ -28,8 +28,8 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
 
     //VARIABLE DECLARATION
     private static final String TAG = "plusActivity_start";
-    CardView cell1, cell2_1, cell2_2, cell2_3, cell3_1, cell3_2, cell3_3;
-    TextView cell1tw, cell2_1tw, cell2_2tw, cell2_3tw, cell3_1tw, cell3_2tw, cell3_3tw;
+    CardView cell0, cell1, cell2_1, cell2_2, cell2_3, cell3_1, cell3_2, cell3_3;
+    TextView actResult, cell1tw, cell2_1tw, cell2_2tw, cell2_3tw, cell3_1tw, cell3_2tw, cell3_3tw;
     Button actionBtn;
     Boolean answered;
     int questionCntr;
@@ -72,6 +72,7 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
                             getAnswer();
                             diableActivityObjects();
                             status = 1;
+                            updateResult();   //ADD METHOD FOR THE RESULTS
                             if (questionCntr == questionAmount)
                                     {actionBtn.setText("VÝSLEDEK");
                                      status = 3;}
@@ -93,6 +94,7 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
 
     private void varInit(){
         Log.d(TAG, "varInit()");
+        cell0 = findViewById(R.id.cell0);
         cell1 = findViewById(R.id.cell1);
         cell2_1 = findViewById(R.id.cell2_1);
         cell2_2 = findViewById(R.id.cell2_2);
@@ -101,6 +103,7 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
         cell3_2 = findViewById(R.id.cell3_2);
         cell3_3 = findViewById(R.id.cell3_3);
 
+        actResult = findViewById(R.id.actResult);
         cell1tw = findViewById(R.id.cell1tw);
         cell2_1tw = findViewById(R.id.cell2_1tw);
         cell2_2tw = findViewById(R.id.cell2_2tw);
@@ -222,5 +225,10 @@ public class PlusActivity extends AppCompatActivity implements View.OnClickListe
         cell3_2.setEnabled(true);
         cell3_3.setEnabled(true);
     }
+
+    private void updateResult() {
+        actResult.setText("Score: "+ String.valueOf(questionCntr) + " / " + String.valueOf(questionAmount));
+    }
+
 
 }
