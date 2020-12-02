@@ -47,8 +47,14 @@
                     android:id="@+id/actResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="Score: 2 / 5"/>
+                    android:text="Score:"/>
+
+                <TextView
+                    android:id="@+id/text_view_countdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="0:30"/>
             </com.google.android.material.card.MaterialCardView>
         </TableRow>
 
@@ -68,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Sample"/>
+                    android:text="NECH SE PŘEKVAPIT"/>
             </com.google.android.material.card.MaterialCardView>
         </TableRow>
 
